@@ -168,7 +168,23 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 3. Approve, reject, or mark as under review
 4. Add admin notes if needed
 
-## Step 8: Configure Email Notifications (Optional)
+## Step 8: Set Up Icecast Streaming Server
+
+See **[ICECAST_SETUP.md](./ICECAST_SETUP.md)** for complete Icecast setup instructions.
+
+Quick setup:
+1. Download and install Icecast from https://icecast.org/download/
+2. Copy `icecast.xml.example` to your Icecast directory as `icecast.xml`
+3. Update passwords and hostname in `icecast.xml`
+4. Start Icecast server
+5. Update `.env.local` with your stream URL:
+   ```env
+   NEXT_PUBLIC_ICECAST_STREAM_URL=http://localhost:8000/stream
+   ```
+
+**Note**: You'll need a source client (like BUTT or OBS) or build a radio orchestrator service to actually stream audio to Icecast.
+
+## Step 9: Configure Email Notifications (Optional)
 
 1. Sign up for an email service (Resend, SendGrid, etc.)
 2. Get your API key
@@ -190,7 +206,7 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 ```
 
-## Step 9: Production Deployment
+## Step 10: Production Deployment
 
 ### 9.1 Build for Production
 

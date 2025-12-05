@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<icecast>
+    <!-- Flam Tunes Icecast Configuration -->
+    <!-- Copy this to icecast.xml and update passwords and hostname -->
+    
+    <location>Flam Tunes Radio Station</location>
+    <admin>admin@flamtunes.com</admin>
+    
+    <!-- Update this to your domain or IP address -->
+    <hostname>localhost</hostname>
+    
+    <limits>
+        <clients>500</clients>
+        <sources>2</sources>
+        <queue-size>524288</queue-size>
+        <client-timeout>30</client-timeout>
+        <header-timeout>15</header-timeout>
+        <source-timeout>10</source-timeout>
+        <burst-on-connect>1</burst-on-connect>
+        <burst-size>65535</burst-size>
+    </limits>
+    
+    <authentication>
+        <!-- CHANGE THESE PASSWORDS! -->
+        <source-password>CHANGE_THIS_TO_SECURE_PASSWORD</source-password>
+        <relay-password>CHANGE_THIS_TO_SECURE_PASSWORD</relay-password>
+        <admin-user>admin</admin-user>
+        <admin-password>CHANGE_THIS_TO_SECURE_PASSWORD</admin-password>
+    </authentication>
+    
+    <listen-socket>
+        <port>8000</port>
+        <!-- For production, uncomment and set to your server IP -->
+        <!-- <bind-address>0.0.0.0</bind-address> -->
+    </listen-socket>
+    
+    <!-- Main stream mount point -->
+    <mount type="normal">
+        <mount-name>/stream</mount-name>
+        <public>1</public>
+        <max-listeners>500</max-listeners>
+    </mount>
+    
+    <!-- CORS headers for web player -->
+    <http-headers>
+        <header name="Access-Control-Allow-Origin" value="*" />
+    </http-headers>
+    
+    <fileserve>1</fileserve>
+    
+    <paths>
+        <logdir>./log</logdir>
+        <webroot>./web</webroot>
+        <adminroot>./admin</adminroot>
+        <alias source="/" destination="/status.xsl"/>
+    </paths>
+    
+    <logging>
+        <accesslog>access.log</accesslog>
+        <errorlog>error.log</errorlog>
+        <loglevel>3</loglevel>
+        <logsize>10000</logsize>
+    </logging>
+</icecast>
+
